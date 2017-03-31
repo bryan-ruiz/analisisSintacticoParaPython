@@ -223,8 +223,6 @@ public class ActionPerformer {
         }
     }
 
-
-
     public ArrayList<String> actionCompile() {
         ScannerProgra scanner = null;
         ParserProgra parser = null;
@@ -236,13 +234,33 @@ public class ActionPerformer {
             CommonTokenStream tokens = new CommonTokenStream(scanner);
             parser = new ParserProgra(tokens);
 
-            //List lista = scanner.getAllTokens();
-            /*Iterator var6 = lista.iterator();
+            ObtenerError obtenerError = new ObtenerError();
+            parser.setErrorHandler(obtenerError);
+            obtenerError.limpiarListaErrores();
+            listaConErrores = obtenerError.obtenerListaErrores();
+            scanner.reset();
 
-            while(var6.hasNext()) {
-                Token t = (Token)var6.next();
-                System.out.println(t.getType() + " : \'" + t.getText() + "\'");
-            }*/
+            parser.program();
+
+            System.out.println();
+            System.out.println(listaConErrores);
+            return listaConErrores;
+        } catch (Exception var8) {
+            return listaConErrores;
+        }
+    }
+
+    public void actionTree() {
+        ScannerProgra scanner = null;
+        ParserProgra parser = null;
+        ArrayList<String> listaConErrores = null;
+        try {
+            String jaj = tpEditor.getJTextArea().getText();
+            ANTLRInputStream e = new ANTLRInputStream(jaj);
+            scanner = new ScannerProgra(e);
+            CommonTokenStream tokens = new CommonTokenStream(scanner);
+            parser = new ParserProgra(tokens);
+
 
             ObtenerError obtenerError = new ObtenerError();
             parser.setErrorHandler(obtenerError);
@@ -250,20 +268,19 @@ public class ActionPerformer {
             listaConErrores = obtenerError.obtenerListaErrores();
             scanner.reset();
 
-            //parser.program();
-
             ParseTree raiz = parser.program();
 
             System.out.println(raiz.toStringTree(parser));
             PrettyPrint print = new PrettyPrint();
-
-            print.visit(raiz);
-
-            System.out.println();
+            if (listaConErrores.isEmpty()) {
+                print.visit(raiz);
+            }
+            else {
+                System.out.println("EL CODIGO TIENE ERRORES! no se puede imprimir arbol");
+            }
             System.out.println(listaConErrores);
-            return listaConErrores;
+            System.out.println();
         } catch (Exception var8) {
-            return listaConErrores;
         }
     }
 

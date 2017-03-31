@@ -442,6 +442,11 @@ public class TPEditor {
         buttonPlay.setIcon(new ImageIcon(getClass().getResource("/res/play.png")));
         buttonPlay.setActionCommand("cmd_play");
 
+        JButton buttonTree = new JButton();
+        buttonTree.setToolTipText("Tree");
+        buttonTree.setIcon(new ImageIcon(getClass().getResource("/res/tree.png")));
+        buttonTree.setActionCommand("cmd_tree");
+
         jToolBar.add(buttonNew);    //se añaden los botones construidos a la barra de herramientas
         jToolBar.add(buttonOpen);
         jToolBar.add(buttonSave);
@@ -456,6 +461,7 @@ public class TPEditor {
         jToolBar.add(buttonCopy);
         jToolBar.add(buttonPaste);
         jToolBar.add(buttonPlay);
+        jToolBar.add(buttonTree);
 
         /** itera sobre todos los componentes de la barra de herramientas, se les asigna el
          mismo margen y el mismo manejador de eventos unicamente a los botones */
@@ -769,7 +775,10 @@ public class TPEditor {
                     jTextAreaError.append(listaErrores.get(contador) + "\n");
                     contador ++;
                 }
+            } else if (ac.equals("cmd_tree") == true) {
+                actionPerformer.actionTree();
             }
+
         }
 
         /**
