@@ -10,6 +10,7 @@ import generated.ScannerProgra;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -249,7 +250,14 @@ public class ActionPerformer {
             listaConErrores = obtenerError.obtenerListaErrores();
             scanner.reset();
 
-            parser.program();
+            //parser.program();
+
+            ParseTree raiz = parser.program();
+
+            System.out.println(raiz.toStringTree(parser));
+            PrettyPrint print = new PrettyPrint();
+
+            print.visit(raiz);
 
             System.out.println();
             System.out.println(listaConErrores);
