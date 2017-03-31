@@ -130,12 +130,15 @@ public class ObtenerError extends DefaultErrorStrategy{
 
         String msg = "No hay alternativa viable en la entrada " + this.escapeWSAndQuote(input);
         recognizer.notifyErrorListeners(e.getOffendingToken(), msg, e);
+        String posicion = e.getOffendingToken().toString();
+        listaConErrores.add(posicion + ".    " + msg);
     }
 
     protected void reportInputMismatch(Parser recognizer, InputMismatchException e) {
         String msg = "Entrada desajustada: " + this.getTokenErrorDisplay(e.getOffendingToken()) + ", se esperaba: " + e.getExpectedTokens().toString(recognizer.getVocabulary());
         recognizer.notifyErrorListeners(e.getOffendingToken(), msg, e);
-        listaConErrores.add(msg);
+        String posicion = e.getOffendingToken().toString();
+        listaConErrores.add(posicion + ".    " + msg);
     }
 
 
@@ -147,7 +150,9 @@ public class ObtenerError extends DefaultErrorStrategy{
             IntervalSet expecting = this.getExpectedTokens(recognizer);
             String msg = "Entrada ajena: " + tokenName + ", se esperaba: " + expecting.toString(recognizer.getVocabulary());
             recognizer.notifyErrorListeners(t, msg, (RecognitionException)null);
-            listaConErrores.add(msg);
+            String posicion = t.toString();
+            System.out.println(t);
+            listaConErrores.add(posicion + ".    " + msg);
         }
     }
 
@@ -158,7 +163,8 @@ public class ObtenerError extends DefaultErrorStrategy{
             IntervalSet expecting = this.getExpectedTokens(recognizer);
             String msg = "falta: " + expecting.toString(recognizer.getVocabulary()) + ", a: " + this.getTokenErrorDisplay(t);
             recognizer.notifyErrorListeners(t, msg, (RecognitionException)null);
-            listaConErrores.add(msg);
+            String posicion = t.toString();
+            listaConErrores.add(posicion + ".    " + msg);
         }
     }
 

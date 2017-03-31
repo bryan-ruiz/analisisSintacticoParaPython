@@ -1,4 +1,4 @@
-// Generated from C:/Users/Bryan/Desktop/PrograCompiladores/PrograCompiladores\ParserProgra.g4 by ANTLR 4.6
+// Generated from C:/Users/Bryan/Documents/GitHub/analisisSintacticoParaPython/PrograCompiladores\ParserProgra.g4 by ANTLR 4.6
 package generated;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 

@@ -234,6 +234,7 @@ public class ActionPerformer {
             scanner = new ScannerProgra(e);
             CommonTokenStream tokens = new CommonTokenStream(scanner);
             parser = new ParserProgra(tokens);
+
             //List lista = scanner.getAllTokens();
             /*Iterator var6 = lista.iterator();
 
@@ -241,13 +242,15 @@ public class ActionPerformer {
                 Token t = (Token)var6.next();
                 System.out.println(t.getType() + " : \'" + t.getText() + "\'");
             }*/
+
             ObtenerError obtenerError = new ObtenerError();
             parser.setErrorHandler(obtenerError);
             obtenerError.limpiarListaErrores();
             listaConErrores = obtenerError.obtenerListaErrores();
+            scanner.reset();
 
             parser.program();
-            scanner.reset();
+
             System.out.println();
             System.out.println(listaConErrores);
             return listaConErrores;

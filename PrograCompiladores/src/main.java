@@ -24,10 +24,10 @@ public class main {
     }
 
     public static void main(String[] args) {
-        //ScannerProgra scanner = null;
-        //ParserProgra parser = null;
+        ScannerProgra scanner = null;
+        ParserProgra parser = null;
         new TPEditor().jFrame.setVisible(true);
-        /*try {
+        try {
             ANTLRInputStream e = new ANTLRInputStream(new FileReader("prueba.txt"));
             scanner = new ScannerProgra(e);
             CommonTokenStream tokens = new CommonTokenStream(scanner);
@@ -40,10 +40,8 @@ public class main {
                 System.out.println(t.getType() + " : \'" + t.getText() + "\'");
             }
 
-
-
             parser.setErrorHandler(new ObtenerError());
-            parser.program();
+            //parser.program();
             scanner.reset();
             ANTLRInputStream input = new ANTLRInputStream(System.in);
             ScannerProgra lexer = new ScannerProgra(input);
@@ -53,11 +51,9 @@ public class main {
             System.out.println(tree.toStringTree(parserr));
 
 
-
-
         } catch (Exception var8) {
             System.out.println("No hay archivo");
-        }*/
+        }
 
     }
 }

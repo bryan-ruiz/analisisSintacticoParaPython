@@ -77,7 +77,7 @@ MUL		:	'*' ;
 PCUAIZQ	:	'[' ;
 PCUADER	:	']' ;
 MENQ    :   '<' ;
-MAYQ    :   '>' ;
+MAYQ   :   '>' ;
 MENIG   :   '<=';
 MAYIG   :   '>=';
 CMPIG   :   '==';
