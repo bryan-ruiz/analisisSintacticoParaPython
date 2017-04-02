@@ -17,7 +17,7 @@ public class ObtenerError extends DefaultErrorStrategy{
     protected boolean errorRecoveryMode = false;
     protected int lastErrorIndex = -1;
     protected IntervalSet lastErrorStates;
-    private static ArrayList<String> listaConErrores = new ArrayList<String>();;
+    private static ArrayList<String> listaConErrores = new ArrayList<String>();
     public ObtenerError() {
     }
 

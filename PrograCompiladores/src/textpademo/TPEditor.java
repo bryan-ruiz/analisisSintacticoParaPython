@@ -769,6 +769,7 @@ public class TPEditor {
                         JOptionPane.INFORMATION_MESSAGE);
             } else if (ac.equals("cmd_play") == true) {
                 ArrayList<String> listaErrores = actionPerformer.actionCompile();
+                System.out.println(listaErrores);
                 int contador = 0;
                 jTextAreaError.setText("");
                 while(contador < listaErrores.size()) {
@@ -776,7 +777,23 @@ public class TPEditor {
                     contador ++;
                 }
             } else if (ac.equals("cmd_tree") == true) {
-                actionPerformer.actionTree();
+                ArrayList<String> listaArbol = actionPerformer.actionTree();
+                System.out.println("---------------------");
+                System.out.println(listaArbol);
+                System.out.println("------------------");
+                int contador = 0;
+                int auxiliar = 2;
+                jTextAreaError.setText("");
+                String linea = "";
+                while(contador < listaArbol.size()) {
+                    linea += listaArbol.get(contador);
+                    if((contador % auxiliar) == 1){
+                        linea += "\n";
+                        jTextAreaError.append(linea);
+                        linea = "";
+                    }
+                    contador ++;
+                }
             }
 
         }

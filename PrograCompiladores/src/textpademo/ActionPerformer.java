@@ -226,7 +226,7 @@ public class ActionPerformer {
     public ArrayList<String> actionCompile() {
         ScannerProgra scanner = null;
         ParserProgra parser = null;
-        ArrayList<String> listaConErrores = null;
+        ArrayList<String> listaConErrores = new ArrayList<>();
         try {
             String jaj = tpEditor.getJTextArea().getText();
             ANTLRInputStream e = new ANTLRInputStream(jaj);
@@ -246,14 +246,16 @@ public class ActionPerformer {
             System.out.println(listaConErrores);
             return listaConErrores;
         } catch (Exception var8) {
+            listaConErrores.add("Error");
             return listaConErrores;
         }
     }
 
-    public void actionTree() {
+    public ArrayList<String> actionTree() {
         ScannerProgra scanner = null;
         ParserProgra parser = null;
-        ArrayList<String> listaConErrores = null;
+        ArrayList<String> listaConErrores = new ArrayList<>();
+        ArrayList<String> listaConArbol = new ArrayList<>();
         try {
             String jaj = tpEditor.getJTextArea().getText();
             ANTLRInputStream e = new ANTLRInputStream(jaj);
@@ -265,6 +267,7 @@ public class ActionPerformer {
             ObtenerError obtenerError = new ObtenerError();
             parser.setErrorHandler(obtenerError);
             obtenerError.limpiarListaErrores();
+
             listaConErrores = obtenerError.obtenerListaErrores();
             scanner.reset();
 
@@ -272,15 +275,26 @@ public class ActionPerformer {
 
             System.out.println(raiz.toStringTree(parser));
             PrettyPrint print = new PrettyPrint();
+            print.limpiarListaArbol();
             if (listaConErrores.isEmpty()) {
+                System.out.println("----------+||||||||||||+-----------");
                 print.visit(raiz);
+                System.out.println("----------+++###########3333++-----------");
+                listaConArbol = print.obtenerListaArbol();
+                System.out.println(listaConArbol);
             }
             else {
-                System.out.println("EL CODIGO TIENE ERRORES! no se puede imprimir arbol");
+                listaConArbol.add("EL CODIGO TIENE ERRORES! no se puede imprimir arbol");
             }
+            System.out.println("----------++++++++++-----------");
+            System.out.println(listaConArbol);
+            System.out.println("----------++++++++--------");
             System.out.println(listaConErrores);
             System.out.println();
+            return listaConArbol;
         } catch (Exception var8) {
+            System.out.println("----------+++&6&&&&&&&&&&55555555543333333333+-----------");
+            return listaConArbol;
         }
     }
 
